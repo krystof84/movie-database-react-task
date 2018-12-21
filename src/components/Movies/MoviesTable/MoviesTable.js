@@ -1,5 +1,5 @@
 import React from 'react';
-import ListItem from './ListItem/ListItem';
+import ListItem from './RowItem/RowItem';
 import { Table } from 'reactstrap';
 
 const moviesList = (props) => {
@@ -7,7 +7,7 @@ const moviesList = (props) => {
     let tableContent = null;
 
     if(props.moviesList) {
-        tableContent = props.moviesList.map((movie) => {
+        tableContent = props.moviesList.map((movie, index) => {
             return (
                 <ListItem 
                     name={movie.name} 

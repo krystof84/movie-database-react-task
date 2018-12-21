@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import MoviesList from './MoviesList/MoviesList';
+import MoviesList from './MoviesTable/MoviesTable';
 import axios from 'axios';
 import shortid from 'shortid';
 
@@ -9,34 +9,27 @@ class Movies extends Component {
         formFields: null
     }
 
-    addNewIdHandler = () => {
-
-        this.setState({
-            movies: this.state.movies.map((movie) => {
-                return {
-                    ...movie,
-                    id: shortid.generate()
-                }
-            }),
-            formFields: this.state.formFields.map((field) => {
-                return {
-                    ...field,
-                    id: shortid.generate()
-                }
-            })
-        });
-    }
-
     componentDidMount() {
         axios.get('https://api.myjson.com/bins/1tll6')
             .then(response => {
    
-                this.setState({ 
-                    movies: response.data.values, 
-                    formFields: response.data.fields
-                    
+                const newMovies = response.data.values.map((movie) => {
+                    return {
+                        ...movie,
+                        id: shortid.generate()
+                    }
                 });
-                this.addNewIdHandler();
+                const newFormField = response.data.fields.map((field) => {
+                    return {
+                        ...field,
+                        id: shortid.generate()
+                    }
+                });
+
+                this.setState({ 
+                    movies: newMovies, 
+                    formFields: newFormField
+                });
 
             }).catch(error => {
                 console.log(error);
@@ -45,9 +38,7 @@ class Movies extends Component {
 
     render() {
         return (
-            <React.Fragment>
-                <MoviesList moviesList={this.state.movies}/>
-            </React.Fragment>
+            <MoviesList moviesList={this.state.movies}/>
         );
     }
 }
