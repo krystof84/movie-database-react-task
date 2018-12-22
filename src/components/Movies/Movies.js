@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import MoviesList from './MoviesTable/MoviesTable';
+import MoviesTable from './MoviesTable/MoviesTable';
+import Spinner from '../../ui/Spinner/Spnner';
+
 import axios from 'axios';
 import shortid from 'shortid';
 
@@ -37,8 +39,18 @@ class Movies extends Component {
     }
 
     render() {
+
+        let moviesTable = <Spinner />;
+        if(this.state.movies) {
+            moviesTable = <MoviesTable moviesList={this.state.movies} moviesFields={this.state.formFields}/>;
+        }
+
         return (
-            <MoviesList moviesList={this.state.movies}/>
+            <React.Fragment>
+                
+                {moviesTable}
+
+            </React.Fragment>
         );
     }
 }

@@ -1,27 +1,35 @@
 import React from 'react';
-import ListItem from './RowItem/RowItem';
+import RowItem from './RowItem/RowItem';
 import { Table } from 'reactstrap';
 
 const moviesList = (props) => {
  
-    let tableContent = null;
+    const tableHeader = props.moviesFields.map((field, index) => {
+        return (
+            <th key={index}>{field.label}</th>
+        );
+    });
 
-    if(props.moviesList) {
-        tableContent = props.moviesList.map((movie, index) => {
-            return (
-                <ListItem 
-                    name={movie.name} 
-                    year={movie.year} 
-                    duration={movie.duration}
-                    genre={movie.genre}
-                    rating={movie.rating}
-                    key={movie.id}/>
-            );
-        });
-    }
+    const tableContent = props.moviesList.map((movie) => {
+        return (
+            <RowItem 
+                name={movie.name} 
+                year={movie.year} 
+                genre={movie.genre}
+                duration={movie.duration}
+                rating={movie.rating}
+                votes={movie.votes}
+                key={movie.id}/>
+        );
+    });
 
     return (
-        <Table>
+        <Table striped bordered responsive>
+            <thead>
+                <tr>
+                    {tableHeader}
+                </tr>
+            </thead>
             <tbody>
                 {tableContent}
             </tbody>
