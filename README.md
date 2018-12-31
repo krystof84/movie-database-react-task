@@ -17,7 +17,7 @@ Pod [adresem] (https://api.myjson.com/bins/1tll6) znajduje się json zawierając
 - pola powinny posiadać odpowiednie etykiety informujące o zawartości i formacie danych,
 - prawidłowo powinny zostać wyświetlone wiersz z niepełnymi danymi.
 6.	Filtrowanie danych:
-- informowanie o zastosowanym filtrowaniu, 
+- informowanie o zastosowanym filtrowaniu,
 - możliwe jest zresetowanie filtrowania,
 - filtrowanie jest możliwe – wedle uznania - po wszystkich naraz lub po każdym polu osobno,
 - filtrowanie nie resetuje zastosowanego sortowania.
@@ -30,4 +30,4 @@ Pod [adresem] (https://api.myjson.com/bins/1tll6) znajduje się json zawierając
 ##Szczegóły implementacji
 1.	Kod powinien być napisany w języku Javascript, w wersji ES5 lub ES6.
 2.	Możliwe jest użycie pomocniczych bibliotek w aplikacji oraz jako narzędzi do budowania aplikacji, ale proszę nie używać gotowych rozwiązań.
-3.	Kod aplikacji powinien być czytelny i zrozumiały dla następnego programisty, który podejmie rozwój aplikacji. 
+3.	Kod aplikacji powinien być czytelny i zrozumiały dla następnego programisty, który podejmie rozwój aplikacji.

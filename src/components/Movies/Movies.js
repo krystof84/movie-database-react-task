@@ -1,20 +1,23 @@
 import React, { Component } from 'react';
 import MoviesTable from './MoviesTable/MoviesTable';
 import Spinner from '../../ui/Spinner/Spnner';
+import MoviesForm from './MoviesForm/MoviesForm';
 
 import axios from 'axios';
 import shortid from 'shortid';
+import './Movies.scss';
 
 class Movies extends Component {
     state = {
         movies: null,
-        formFields: null
+        formFields: null,
+        loading: true
     }
 
     componentDidMount() {
         axios.get('https://api.myjson.com/bins/1tll6')
             .then(response => {
-   
+
                 const newMovies = response.data.values.map((movie) => {
                     return {
                         ...movie,
@@ -28,9 +31,10 @@ class Movies extends Component {
                     }
                 });
 
-                this.setState({ 
-                    movies: newMovies, 
-                    formFields: newFormField
+                this.setState({
+                    movies: newMovies,
+                    formFields: newFormField,
+                    loading: false
                 });
 
             }).catch(error => {
@@ -40,17 +44,18 @@ class Movies extends Component {
 
     render() {
 
-        let moviesTable = <Spinner />;
-        if(this.state.movies) {
-            moviesTable = <MoviesTable moviesList={this.state.movies} moviesFields={this.state.formFields}/>;
+        let moviesContent = <Spinner />;
+        if(this.state.loading === false) {
+            moviesContent = [
+                <MoviesForm moviesFields={this.state.formFields} key="moviesForm"/>,
+                <MoviesTable moviesList={this.state.movies} moviesFields={this.state.formFields} key="moviesTable"/>
+            ];
         }
 
         return (
-            <React.Fragment>
-                
-                {moviesTable}
-
-            </React.Fragment>
+            <div className="Movies">
+                {moviesContent}
+            </div>
         );
     }
 }

@@ -3,7 +3,7 @@ import RowItem from './RowItem/RowItem';
 import { Table } from 'reactstrap';
 
 const moviesList = (props) => {
- 
+
     const tableHeader = props.moviesFields.map((field, index) => {
         return (
             <th key={index}>{field.label}</th>
@@ -12,9 +12,9 @@ const moviesList = (props) => {
 
     const tableContent = props.moviesList.map((movie) => {
         return (
-            <RowItem 
-                name={movie.name} 
-                year={movie.year} 
+            <RowItem
+                name={movie.name}
+                year={movie.year}
                 genre={movie.genre}
                 duration={movie.duration}
                 rating={movie.rating}
@@ -35,7 +35,7 @@ const moviesList = (props) => {
             </tbody>
         </Table>
     );
-    
+
 }
 
 export default moviesList;

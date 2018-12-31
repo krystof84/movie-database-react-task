@@ -1,6 +1,6 @@
 import React from 'react';
 
-const listItem = (props) => {
+const rowItem = (props) => {
     return (
         <tr>
             <td>{props.name}</td>
@@ -13,4 +13,4 @@ const listItem = (props) => {
     );
 }
 
-export default listItem;
+export default rowItem;
