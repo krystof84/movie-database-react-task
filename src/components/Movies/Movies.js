@@ -27,7 +27,9 @@ class Movies extends Component {
                 const newFormField = response.data.fields.map((field) => {
                     return {
                         ...field,
-                        id: shortid.generate()
+                        id: shortid.generate(),
+                        value: '',
+                        sortOrder: 'none'
                     }
                 });
 
@@ -42,13 +44,24 @@ class Movies extends Component {
             });
     }
 
+    changeInputHandler(event, fieldId) {
+        console.log(event.target.value);
+        console.log('fieldId', fieldId);
+    }
+
     render() {
 
         let moviesContent = <Spinner />;
         if(this.state.loading === false) {
             moviesContent = [
-                <MoviesForm moviesFields={this.state.formFields} key="moviesForm"/>,
-                <MoviesTable moviesList={this.state.movies} moviesFields={this.state.formFields} key="moviesTable"/>
+                <MoviesForm
+                    key="moviesForm"
+                    moviesFields={this.state.formFields}
+                    changed={(event, fieldId) => this.changeInputHandler(event, fieldId)} />,
+                <MoviesTable
+                    key="moviesTable"
+                    moviesList={this.state.movies}
+                    moviesFields={this.state.formFields} />
             ];
         }
 
